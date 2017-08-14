@@ -30,4 +30,52 @@ var Game = function(board){
 
 Game.prototype.toString = function(){
   return this.board.slice(0, 4) + "\n" + this.board.slice(4, 8) + "\n" + this.board.slice(8, 12) + "\n" + this.board.slice(12, 16)
+};
+
+var orderedSlices = function(direction, board){
+  var splitBoard = board.split("");
+  var firstSlice = [];
+  var secondSlice = [];
+  var thirdSlice = [];
+  var fourthSlice = [];
+  if (direction === 'left' || direction === 'right'){
+    for(var i=0; i < splitBoard.length; i++){
+      if (i < 4) {
+        firstSlice.push(splitBoard[i]);
+      }else if (i < 8) {
+        secondSlice.push(splitBoard[i]);
+      }else if (i < 12) {
+        thirdSlice.push(splitBoard[i]);
+      }else if (i < 16) {
+        fourthSlice.push(splitBoard[i]);
+      }
+    }
+    if (direction === 'left') {
+      return [firstSlice, secondSlice, thirdSlice, fourthSlice];
+    } else {
+      return [firstSlice.reverse(), secondSlice.reverse(), thirdSlice.reverse(), fourthSlice.reverse()];
+    }
+
+  }else if (direction === 'up' || direction === 'down'){
+    for(var i=0; i < splitBoard.length; i++){
+      if (i % 4 === 0) {
+        firstSlice.push(splitBoard[i]);
+      }else if (i % 4 === 1) {
+        secondSlice.push(splitBoard[i]);
+      }else if (i % 4 === 2) {
+        thirdSlice.push(splitBoard[i]);
+      }else if (i % 4 === 3) {
+        fourthSlice.push(splitBoard[i]);
+      }
+    }
+    if (direction === 'up') {
+      return [firstSlice, secondSlice, thirdSlice, fourthSlice];
+    } else {
+      return [firstSlice.reverse(), secondSlice.reverse(), thirdSlice.reverse(), fourthSlice.reverse()];
+    }
+  }else {
+    return "Invalid Direction"
+  }
 }
+
+
