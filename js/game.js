@@ -128,6 +128,22 @@ var generateRandomBoard = function(){
   return zeroBoard;
 }
 
+var spawnRandomNum = function(board){
+  var indexesOfZeroes = []
+  for(var i = 0; i < board.length; i++){
+    if (board[i] === '0'){
+      indexesOfZeroes.push(i);
+    }
+  }
+
+  if (indexesOfZeroes.length > 0){
+    var randomIndex = sample(indexesOfZeroes);
+    var randomStarts = ['2', '4'];
+    board[randomIndex] = sample(randomStarts);
+  }
+  return board;
+}
+
 
 //////////////////////////////////////////// GAME FUNCTIONS BELOW
 
@@ -141,12 +157,20 @@ Game.prototype.toString = function(){
 };
 
 Game.prototype.move = function(direction){
+  var originalBoard = this.board.slice();
+  console.log("before: " + originalBoard)
   var slicedBoard = orderedSlices(direction, this.board);
   for(var i = 0; i < slicedBoard.length; i++){
     slicedBoard[i] = moveTilesInASlice(slicedBoard[i]);
   }
-  return this.board = rejoinBoard(direction, slicedBoard);
-
+  console.log("after: " + originalBoard)
+  if (originalBoard !== rejoinBoard(direction, slicedBoard)){
+    this.board = rejoinBoard(direction, slicedBoard);
+    this.board = spawnRandomNum(this.board);
+  } else {
+    this.board = rejoinBoard(direction, slicedBoard);
+  }
+  return this.toString();
 }
 
 
