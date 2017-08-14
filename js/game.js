@@ -71,12 +71,17 @@ var moveTilesInASlice = function(slice){
       //lets see if we can move the tile
       for(var j = i - 1; j > -1; j--){
         //0, 1, 2
+
         if (slice[j] !== '0'){
           if (slice[j] === slice[i]){
             var mergedNumber = (parseInt(slice[j])*2).toString();
             slice[j] = mergedNumber;
             slice[i] = '0';
           }
+        } else if (slice[j] === '0'){
+          slice[j] = slice[i];
+          slice[i] = 0;
+          i--;
         }
       }
     }
