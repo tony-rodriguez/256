@@ -6,8 +6,7 @@ String.prototype.replaceAt=function(index, replacement) {
     return this.substr(0, index) + replacement+ this.substr(index + replacement.length);
 }
 
-var orderedSlices = function(direction, board){
-  var splitBoard = board.split("");
+var orderedSlices = function(direction, splitBoard){
   var firstSlice = [];
   var secondSlice = [];
   var thirdSlice = [];
@@ -64,28 +63,33 @@ var moveTilesInASlice = function(slice){
   //if first tile is not equal to 2nd tile (and not zero), don't move 2nd tile
   //continue for 3rd tile and 4th tile
   //0, 1, 2, 3
-  for(var i = 1; i < slice.length; i++){
+  var mergedIndexes = []
+  for(var currentI = 1; currentI < slice.length; currentI++){
     // 1, 2, 3
-    console.log(slice[i]);
-    if (slice[i] !== '0'){
+    console.log("tilenum: " + slice[currentI]);
+    if (slice[currentI] !== '0'){
       //lets see if we can move the tile
-      for(var j = i - 1; j > -1; j--){
+      for(var previousI = currentI - 1; previousI > -1; previousI--){
         //0, 1, 2
-
-        if (slice[j] !== '0'){
-          if (slice[j] === slice[i]){
-            var mergedNumber = (parseInt(slice[j])*2).toString();
-            slice[j] = mergedNumber;
-            slice[i] = '0';
+        console.log("previous tilenum: " + slice[previousI])
+        if (slice[previousI] !== '0'){
+          if (slice[previousI] === slice[currentI] && !mergedIndexes.includes(previousI)){
+            var mergedNumber = (parseInt(slice[previousI])*2).toString();
+            slice[previousI] = mergedNumber;
+            slice[currentI] = '0';
+            mergedIndexes.push(previousI);
+            console.log("slice: " + slice);
           }
-        } else if (slice[j] === '0'){
-          slice[j] = slice[i];
-          slice[i] = 0;
-          i--;
+        } else if (slice[previousI] === '0'){
+          slice[previousI] = slice[currentI];
+          slice[currentI] = '0';
+          console.log("slice: " + slice);
+          currentI--;
         }
       }
     }
   }
+  return slice;
 }
 
 
@@ -111,8 +115,9 @@ var generateRandomBoard = function(){
 
 //////////////////////////////////////////// GAME FUNCTIONS BELOW
 
-var Game = function(board){
-  this.board = board || generateRandomBoard();
+var Game = function(stringBoard){
+  this.stringBoard = stringBoard || generateRandomBoard();
+  this.board = this.stringBoard.split('');
 }
 
 Game.prototype.toString = function(){
