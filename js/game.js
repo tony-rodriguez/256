@@ -28,6 +28,6 @@ var Game = function(board){
   this.board = board || generateRandomBoard();
 }
 
-Game.prototype.spawnRandomTile = function(){
-
+Game.prototype.toString = function(){
+  return this.board.slice(0, 4) + "\n" + this.board.slice(4, 8) + "\n" + this.board.slice(8, 12) + "\n" + this.board.slice(12, 16)
 }
