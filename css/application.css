@@ -1,5 +1,3 @@
-
-
 body {
   font-family: 'Fugaz One', cursive;
   background-color: #dce0ef;
@@ -33,16 +31,18 @@ body {
 
 .gameboard {
   text-align: center;
-  width: 40%;
-  margin: 100px auto;
+  width: 600px;
+  margin: 50px auto;
   border-collapse: collapse;
   background-color: #c2c9d6;
 }
 
 .gameboard td {
+  width: 100px;
+  height: 100px;
   font-size: 3em;
   margin: 20px;
   border: 10px solid #8896ad;
-  color: #26b3ff;
+  color: #ffffff;
 
 }

@@ -9,7 +9,7 @@ function isZero(element, index, array) {
 var hasValidPath  = function(path){
   if (path.length === 0) {
     return true;
-  }else if (path.every(isZero)) {
+  } else if (path.every(isZero)) {
     return true;
   }else {
     return false;
@@ -138,20 +138,53 @@ var generateRandomBoard = function(){
   return zeroBoard;
 }
 
-var spawnRandomNum = function(board){
-  var indexesOfZeroes = []
+var findAllZeroes = function(board){
+  var allZeroes = []
   for(var i = 0; i < board.length; i++){
     if (board[i] === '0'){
-      indexesOfZeroes.push(i);
+      allZeroes.push(i);
     }
   }
 
-  if (indexesOfZeroes.length > 0){
-    var randomIndex = sample(indexesOfZeroes);
+  return allZeroes;
+}
+
+var spawnRandomNum = function(board){
+  var allZeroes = findAllZeroes(board);
+
+  if (allZeroes.length > 0){
+    var randomIndex = sample(allZeroes);
     var randomStarts = ['2', '4'];
     board[randomIndex] = sample(randomStarts);
   }
   return board;
+}
+
+var winner = false;
+var loser = false;
+
+var gameWin = function(board){
+  for(var i = 0; i < board.length; i++){
+    if (board[i] === '256'){
+      winner = true;
+    }
+  }
+}
+
+var gameLose = function(board){
+  if (!gameWon){
+    if (findAllZeroes(board).length === 0){
+      loser = true;
+    }
+  }
+}
+
+var checkgameStatus = function(board){
+  if(gameWin === true && gameLose === false){
+    alert('You won the game!');
+  } else if (gameLose === true && gameWin === false){
+    alert('Sorry you lost, please restart');
+  } 
 }
 
 
@@ -167,19 +200,13 @@ Game.prototype.toString = function(){
 };
 
 Game.prototype.move = function(direction){
-  // var originalBoard = this.board.slice();
-  // console.log("before: " + originalBoard)
   var slicedBoard = orderedSlices(direction, this.board);
   for(var i = 0; i < slicedBoard.length; i++){
     slicedBoard[i] = moveTilesInASlice(slicedBoard[i]);
   }
-  // console.log("after: " + originalBoard)
-  // if (originalBoard !== rejoinBoard(direction, slicedBoard)){
-    this.board = rejoinBoard(direction, slicedBoard);
-    this.board = spawnRandomNum(this.board);
-  // } else {
-    // this.board = rejoinBoard(direction, slicedBoard);
-  // }
+  this.board = rejoinBoard(direction, slicedBoard);
+  this.board = spawnRandomNum(this.board);
+  checkgameStatus(this.board);
   return this.toString();
 }
 
