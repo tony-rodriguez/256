@@ -179,7 +179,7 @@ var gameLose = function(board){
   }
 }
 
-var checkgameStatus = function(board){
+var checkGameStatus = function(board){
   if(gameWin === true && gameLose === false){
     alert('You won the game!');
   } else if (gameLose === true && gameWin === false){
@@ -206,7 +206,7 @@ Game.prototype.move = function(direction){
   }
   this.board = rejoinBoard(direction, slicedBoard);
   this.board = spawnRandomNum(this.board);
-  checkgameStatus(this.board);
+  checkGameStatus(this.board);
   return this.toString();
 }
 
