@@ -10,6 +10,9 @@
   <!--
     application.css is where you put your styles
   -->
+
+  <link href="https://fonts.googleapis.com/css?family=Fugaz+One" rel="stylesheet">
+
   <link rel="stylesheet" href="css/application.css">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -21,33 +24,39 @@
   <title>256!</title>
 </head>
 <body>
+  <div class='header'>
+    <h1>256!</h1>
+    <button class='restart-button'>Restart Game</button>
+  </div>
 
-  <table id="2048-grid">
-    <tr id="row-1">
-      <td id="r1c1"></td>
-      <td id="r1c2"></td>
-      <td id="r1c3"></td>
-      <td id="r1c4"></td>
+  <table class='gameboard'>
+    <tr class='row'>
+      <td id='0'></td>
+      <td id='1'></td>
+      <td id='2'></td>
+      <td id='3'></td>
     </tr>
-    <tr id="row-2">
-      <td id="r2c1"></td>
-      <td id="r2c2"></td>
-      <td id="r2c3"></td>
-      <td id="r2c4"></td>
+    <tr class='row'>
+      <td id='4'></td>
+      <td id='5'></td>
+      <td id='6'></td>
+      <td id='7'></td>
     </tr>
-    <tr id="row-3">
-      <td id="r3c1"></td>
-      <td id="r3c2"></td>
-      <td id="r3c3"></td>
-      <td id="r3c4"></td>
+    <tr class='row'>
+      <td id='8'></td>
+      <td id='9'></td>
+      <td id='10'></td>
+      <td id='11'></td>
     </tr>
-    <tr id="row-4">
-      <td id="r4c1"></td>
-      <td id="r4c2"></td>
-      <td id="r4c3"></td>
-      <td id="r4c4"></td>
+    <tr class='row'>
+      <td id='12'></td>
+      <td id='13'></td>
+      <td id='14'></td>
+      <td id='15'></td>
     </tr>
   </table>
+
+
 
 </body>
 </html>

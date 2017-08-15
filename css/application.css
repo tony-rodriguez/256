@@ -1,4 +1,48 @@
-* {
-	margin: 0;
-	padding: 0;
+
+
+body {
+  font-family: 'Fugaz One', cursive;
+  background-color: #dce0ef;
+}
+
+.header {
+  margin-top: 0;
+  width: 100%;
+  height: 100px;
+  background-color: #7fcdef;
+}
+
+.header * {
+  display: inline-block;
+}
+
+.header .restart-button {
+  float: right;
+  margin-top: 40px;
+  margin-right: 50px;
+  font-size: 1em;
+  background-color: #c2c9d6;
+}
+
+.header h1 {
+  vertical-align: middle;
+  font-size: 3.7em;
+  color: #26b3ff;
+  margin: 0 50px;
+}
+
+.gameboard {
+  text-align: center;
+  width: 40%;
+  margin: 100px auto;
+  border-collapse: collapse;
+  background-color: #c2c9d6;
+}
+
+.gameboard td {
+  font-size: 3em;
+  margin: 20px;
+  border: 10px solid #8896ad;
+  color: #26b3ff;
+
 }

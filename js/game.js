@@ -2,8 +2,23 @@ var sample = function(array){
   return array[Math.floor(Math.random()*array.length)];
 }
 
-String.prototype.replaceAt=function(index, replacement) {
-    return this.substr(0, index) + replacement+ this.substr(index + replacement.length);
+function isZero(element, index, array) {
+  return element === '0';
+}
+
+var hasValidPath  = function(path){
+  if (path.length === 0) {
+    return true;
+  }else if (path.every(isZero)) {
+    return true;
+  }else {
+    return false;
+  }
+}
+
+
+String.prototype.replaceAt = function(index, replacement) {
+    return this.substr(0, index) + replacement + this.substr(index + replacement.length);
 }
 
 var orderedSlices = function(direction, splitBoard){
@@ -65,9 +80,8 @@ var moveTilesInASlice = function(slice){
   var mergedIndexes = []
   for(var currentI = 1; currentI < slice.length; currentI++){
     if (slice[currentI] !== '0'){
-      //lets see if we can move the tile
       for(var previousI = currentI - 1; previousI > -1; previousI--){
-        if (slice[previousI] !== '0'){
+        if (slice[previousI] !== '0' && hasValidPath(slice.slice(previousI + 1, currentI))){
           if (slice[previousI] === slice[currentI] && !mergedIndexes.includes(previousI)){
             var mergedNumber = (parseInt(slice[previousI])*2).toString();
             slice[previousI] = mergedNumber;
@@ -109,10 +123,6 @@ var rejoinBoard = function(direction, slicedBoard) {
   }
   return result;
 }
-
-// var strSample = function(string){
-//   return string.charAt(Math.floor(Math.random()*string.length));
-// }
 
 var generateRandomBoard = function(){
   var zeroBoard = '0000000000000000';
@@ -157,19 +167,19 @@ Game.prototype.toString = function(){
 };
 
 Game.prototype.move = function(direction){
-  var originalBoard = this.board.slice();
-  console.log("before: " + originalBoard)
+  // var originalBoard = this.board.slice();
+  // console.log("before: " + originalBoard)
   var slicedBoard = orderedSlices(direction, this.board);
   for(var i = 0; i < slicedBoard.length; i++){
     slicedBoard[i] = moveTilesInASlice(slicedBoard[i]);
   }
-  console.log("after: " + originalBoard)
-  if (originalBoard !== rejoinBoard(direction, slicedBoard)){
+  // console.log("after: " + originalBoard)
+  // if (originalBoard !== rejoinBoard(direction, slicedBoard)){
     this.board = rejoinBoard(direction, slicedBoard);
     this.board = spawnRandomNum(this.board);
-  } else {
-    this.board = rejoinBoard(direction, slicedBoard);
-  }
+  // } else {
+    // this.board = rejoinBoard(direction, slicedBoard);
+  // }
   return this.toString();
 }
 
