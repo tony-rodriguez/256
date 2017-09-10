@@ -7,7 +7,8 @@ This is a clone of the game [2048](http://gabrielecirulli.github.io/2048/).
 Just like 2048, use keyboard commands to choose the direction you'd like to slide the blocks on the grid. Matching numbers merge, and after each turn, a 2 or a 4 is randomly generated in one of the unoccupied spaces. Keep merging numbers in order to avoid running out of space and losing!
 
 See below for a look at the game in action:
-![256! Screenshot](images/256_screeenshot.png?raw=true)
+
+![256 Screenshot](images/256_screenshot.png?raw=true)
 
 
 
