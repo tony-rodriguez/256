@@ -16,3 +16,5 @@ Just like 2048, use keyboard commands to choose the direction you'd like to slid
 #There is currently no scoring system in the game.
 
 #I would like to add some animations to the game so that the movement and merging of numbers is smoother.
+
+#I would like to deploy this app using an AWS EC2 instance.
