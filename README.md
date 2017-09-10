@@ -9,10 +9,10 @@ Just like 2048, use keyboard commands to choose the direction you'd like to slid
 
 ##In Progress
 
-# Currently, if you input a direction that would not result in the movement of any number, the game will still generate a number in a random spot as if you had made a normal turn. The game needs to recognize when an input does not result in movement and prevent the generation of a number. 
+#Currently, if you input a direction that would not result in the movement of any number, the game will still generate a number in a random spot as if you had made a normal turn. The game needs to recognize when an input does not result in movement and prevent the generation of a number. 
 
-# Currently, the game does not detect when you lose. It needs to stop gameplay when appropriate and alert the user that they have lost
+#Currently, the game does not detect when you lose. It needs to stop gameplay when appropriate and alert the user that they have lost
 
-# There is currently no scoring system in the game.
+#There is currently no scoring system in the game.
 
-# I would like to add some animations to the game so that the movement and merging of numbers is smoother.
+#I would like to add some animations to the game so that the movement and merging of numbers is smoother.
