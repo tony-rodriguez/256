@@ -1,13 +1,13 @@
 # 256! A 2048 Clone.
 
-##Summary
+## Summary
 
 This is a clone of the game [2048](http://gabrielecirulli.github.io/2048/).
 
 Just like 2048, use keyboard commands to choose the direction you'd like to slide the blocks on the grid. Matching numbers merge, and after each turn, a 2 or a 4 is randomly generated in one of the unoccupied spaces. Keep merging numbers in order to avoid running out of space and losing!
 
 
-##In Progress
+## In Progress
 
 #Currently, if you input a direction that would not result in the movement of any number, the game will still generate a number in a random spot as if you had made a normal turn. The game needs to recognize when an input does not result in movement and prevent the generation of a number. 
 
